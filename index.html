@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitch Chat NeoLeksa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Caveat', cursive;
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff36b4;
+    }
+    #chat > div {
+      margin-top: 5px;
+      border-radius: 10px;
+      background-color: rgba(169, 169, 169, 0.55);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h3 style="-webkit-text-stroke: 1px black; font-size: 30px;">Чатик NeoLeksa</h3>
+    <h3 id="chat">
+      <div>message:<br> message</div>
+    </h3>
+  </div>
+  <script src="tmi.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

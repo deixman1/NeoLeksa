@@ -1,5 +1,5 @@
 const usersElement = document.querySelector('#chat');
-const usersAlreadyWrote = ['neoleksa', 'roma2006qaz', 'commanderroot', 'pyotrs', 'violets_tv', 'bloodlustr ', 'ebanuyplayer', 'dcserverforsmallstreamers'];
+const usersAlreadyWrote = ['neoleksa'];
 
 const params = new URLSearchParams(window.location.search);
 const channel = params.get('channel') || 'neoleksa';
@@ -23,7 +23,8 @@ client.on('chat', (channel, userObject, message, self) => {
   console.log(channel);
   console.log(self);
   const { username } = userObject;
-  usersElement.innerHTML = usersElement.innerHTML + '<div><h3>' + username + ':</h3><p>' + message + '</p></div>';
+  if (username === channel) return;
+    usersElement.innerHTML = usersElement.innerHTML + '<div><h3>' + username + ':</h3><p>' + message + '</p></div>';
 
   // if (username.toLowerCase() === channel.toLowerCase()) {
   //   if (message === '!start-count') {

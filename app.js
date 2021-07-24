@@ -1,9 +1,9 @@
 const usersElement = document.querySelector('#chat');
-const usersAlreadyWrote = ['neoleksa', 'ebanuyplayer', 'roma2006qaz'];
+const usersAlreadyWrote = ['neoleksa'];
 const chat = [
   {
     username: 'test',
-    message: 'message',
+    message: 'message message message message message message message message message',
     color: '#FF0000'
   }
 ];
@@ -45,26 +45,49 @@ function resolveColor(channel, username, color) {
   return color;
 }
 
+function formatEmotes(text, emotes) {
+  let splitText = text.split('');
+  for(const i in emotes) {
+    const e = emotes[i];
+    for(const j in e) {
+      let mote = e[j];
+      if(typeof mote == 'string') {
+        mote = mote.split('-');
+        mote = [parseInt(mote[0]), parseInt(mote[1])];
+        const length = mote[1] - mote[0],
+            empty = Array.apply(null, new Array(length + 1)).map(function () {
+              return ''
+            });
+        splitText = splitText.slice(0, mote[0]).concat(empty).concat(splitText.slice(mote[1] + 1, splitText.length));
+        splitText.splice(mote[0], 1, '<img width="26px" height="26px" class="emoticon" src="http://static-cdn.jtvnw.net/emoticons/v1/' + i + '/3.0">');
+      }
+    }
+  }
+  return splitText.join('');
+}
+
 
 client.connect().then(() => {});
 
-client.on('chat', (channel, userObject, message, self) => {
+client.on('message', (channel, userObject, message, self) => {
   if (self) return;
+  const { username, color, emotes } = userObject;
+  message = formatEmotes(message, emotes);
+  if (username === 'neoleksa') return;
   console.log(userObject);
+  console.log(message);
   console.log(channel);
   console.log(self);
-  const { username, color } = userObject;
-  if (username === 'neoleksa') return;
-  if (chat.length === 7) chat.shift();
+  console.log(emotes);
+  if (chat.length === 10) chat.shift();
   chat.push({
     username: username,
     message: message,
-    color: color
+    color: resolveColor(channel, username, color)
   });
   usersElement.innerHTML = '';
   for (const user of chat) {
-    usersElement.innerHTML = usersElement.innerHTML +
-        '<div><h3 style="color: ' + user.color + '">' + user.username + ':</h3><p>' + user.message + '</p></div>';
+    usersElement.innerHTML = '<div><span style="color: ' + user.color + '">' + user.username + ': </span><p>'  + user.message + '</p></div>' + usersElement.innerHTML;
   }
 });
 

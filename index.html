@@ -10,41 +10,48 @@
   <style>
     * {
       font-family: 'Caveat', cursive;
-      font-size: 26px;
+      font-size: 110%;
       font-weight: bold;
       color: #ffffff;
       background: rgba(0, 0, 0, 1);
     }
-    html, #chat {
+    img {
+      height: 1em;
+    }
+    html, body {
       width: 100%;
       height: 100%;
-    }
-    body {
     }
     #chat {
-      width: 100%;
-      height: 100%;
+      height: 92%;
+      display: flex;
+      flex-direction: column-reverse;
+      overflow: hidden;
     }
     #chat > div {
+      transition: all 1s ease-out;
+      display: flex;
       margin-top: 5px;
-      padding-left: 10px;
-      border-radius: 10px;
       width: 100%;
     }
     #chat > div > p {
+      width: 60%;
       margin: 0;
-      line-height: 0px;
+      line-height: 28px;
       padding: 0;
+      text-align: start;
     }
-    #chat > div > h3 {
-      margin: 0;
-      padding: 0;
+    #chat > div > span {
+      width: 40%;
+      text-align: right;
+      padding-right: 5px;
     }
     #title {
-      color:              white;
-      text-align:         center;
+      height: 8%;
+      color: white;
+      text-align: center;
       font-size: 40px;
-      margin:             0;
+      margin: 0;
     }
   </style>
 </head>

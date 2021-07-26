@@ -1,12 +1,6 @@
 const usersElement = document.querySelector('#chat');
 const usersAlreadyWrote = ['neoleksa'];
-const chat = [
-  {
-    username: 'test',
-    message: 'message message message message message message message message message',
-    color: '#FF0000'
-  }
-];
+const chat = [];
 
 const params = new URLSearchParams(window.location.search);
 const channel = params.get('channel') || 'neoleksa';
